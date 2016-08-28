@@ -1,0 +1,9 @@
+cd /path/to/demo/backup
+cat mysql | mysql -u root -ppassword t47io_demo
+
+tar zxf data.tgz
+rm -rf ../data
+mv data ../
+
+cd ..
+./util_chmod.sh
