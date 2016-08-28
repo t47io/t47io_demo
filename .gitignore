@@ -6,6 +6,7 @@ cache/*.log
 backup/*
 
 *.pyc
+util_restore.sh
 
 media/js/admin/min/*.js
 media/js/group/min/*.js
