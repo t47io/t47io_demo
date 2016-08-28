@@ -1,0 +1,19 @@
+[uwsgi]
+die-on-term     = true
+# emperor       = true
+enable-threads  = true
+master          = true
+vacuum          = true
+
+socket          = /path/to/sock/uwsgi.sock
+chmod-socket    = 664
+uid             = admin
+gid             = www-data
+
+chdir           = /path/to/repo
+wsgi-file       = /path/to/repo/src/wsgi.py
+
+daemonize       = /path/to/uwsgi.log
+processes       = 2
+
+# env          = DJANGO_SETTINGS_MODULE=%(name).settings

@@ -1,0 +1,7 @@
+# set to 0 for test environment
+# set to 1 for server deployment
+IS_DEVEL = 0
+
+# set to 0 for normal
+# set to 1 for maintenance placeholder (whole site shut down)
+IS_MAINTENANCE = 0
