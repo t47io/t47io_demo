@@ -1,0 +1,34 @@
+body {
+  padding: 0px !important;
+  opacity: 0;
+}
+#all {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  text-align: center;
+  padding: 0px;
+}
+#center {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+#main {
+  vertical-align: middle;
+  display: inline-block;
+  min-width: 640px;
+  max-width: 960px;
+}
+.bgimg2-lg {
+  background-image: url("/site_media/images/bg_rna_2.png");
+  background-repeat: no-repeat;
+  background-position: center center !important;
+  background-size: 100%;
+  padding: 50px 0px;
+}
+
+#demo_msg:hover {
+  color: #29be92;
+  background-color: #e9f8f4;
+}

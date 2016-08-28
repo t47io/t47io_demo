@@ -1,0 +1,26 @@
+{
+    "elb": {
+        "dns_name": "balancer-123456789.us-west-2.elb.amazonaws.com", 
+        "health_check": "HTTPS:443/ping_test/", 
+        "subnets": ["subnet-c1234567"], 
+        "vpc_id": "vpc-12345689"
+    }, 
+    "ec2": {
+        "architecture": "x86_64",
+        "id": "i-00000000",
+        "image_id": "ami-12345678",
+        "instance_type": "t2.micro",
+        "private_dns_name": "ip-123-45-67-890.us-west-2.compute.internal",
+        "public_dns_name": "ec2-98-76-543-21.us-west-2.compute.amazonaws.com",
+        "subnet_id": "subnet-c1234567",
+        "vpc_id": "vpc-12345678"
+    }, 
+    "ebs": {
+        "encrypted": false,
+        "id": "vol-c12345678",
+        "size": 32,
+        "snapshot_id": "snap-00abcdef",
+        "type": "gp2",
+        "zone": "us-west-2b"
+    }
+}

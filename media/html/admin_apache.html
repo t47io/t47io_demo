@@ -1,0 +1,227 @@
+{% extends "admin/base.html" %}
+{% load i18n admin_static %}
+
+{% block bodyclass %}dashboard{% endblock %}
+
+{% block content %}
+	<div id="content-main" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="row">
+			<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+				<table class="table table-overview applist">
+					<tr>
+		                <th scope="row"><b><span class="glyphicon glyphicon-globe"></span> Link</th>
+		                <td class="active"><a href="/server-status/" target="_blank" class="addlink icon">https://{{host_name}}/server-status/</a></td>
+		                <td class="active"><span class="glyphicon glyphicon-lock"></span> Apache Authorization Required</td>
+		              </tr>
+				</table>
+			</div>
+			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+				<span class="pull-right"><u>(Page Refreshes Every 3 <i>s</i>)</u></span>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div style="padding:20px;">
+					<h3 id="apache_title">Apache Server Status</h3>
+
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<div class="thumbnail" style="margin:0px 20px 0 px 0px; padding:20px; float:none;">
+								<table class="table table-hover" style="margin-bottom:0px;">
+									<thead>
+										<tr><th class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></th><th class="col-lg-8 col-md-8 col-sm-8 col-xs-8"></th></tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="text-right"><span class="label label-inverse">Current Time</span></td>
+											<td id="apache_current_time">2016-01-19 (Tuesday) 08:49:09 PM (PST)</td>
+										</tr>
+										<tr>
+											<td class="text-right"><span class="label label-primary">Build Time</span></td>
+											<td id="apache_build_time">2015-10-14 (Wednesday) 02:20:21 PM (PST)</td>
+										</tr>
+										<tr>
+											<td class="text-right"><span class="label label-primary">Restart Time</span></td>
+											<td id="apache_restart_time">2016-01-18 (Monday) 01:43:09 PM (PST)</td>
+										</tr>
+										<tr>
+											<td class="text-right"><span class="label label-success">Up Time</span></td>
+											<td id="apache_up_time">1 day 7 <i>h</i> 6 <i>min</i></td>
+										</tr>
+							            <tr><td colspan="2" style="padding: 0px;"></td></tr>
+									</tbody>
+								</table>
+								<table class="table table-hover" style="margin-bottom:0px;">
+									<thead>
+										<tr>
+											<th class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></th><th class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></th>
+											<th class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></th><th class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></th>
+											<th class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></th><th class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="text-right"><span class="label label-info">Total Access</span></td>
+											<td id="apache_total_access">4588</td>
+											<td class="text-right"><span class="label label-orange">Server Load</span></td>
+											<td colspan="3" id="apache_server_load"><span style="color:#f00;">0.03 </span> | <span style="color:#080;"> 0.02 </span> | <span style="color:#00f;"> 0.05</span></td>
+										</tr>
+										<tr>
+											<td class="text-right"><span class="label label-danger">CPU Load</span></td>
+											<td id="apache_cpu_load">0.0129%</td>
+											<td class="text-right"><span class="label label-danger">CPU Usage</span></td>
+											<td colspan="3" id="apache_cpu_usage"><i>u</i> <span style="color:#f00;">13.99 </span> | <i>s</i> <span style="color:#080;"> 0.45 </span> | <i>cu</i> <span style="color:#00f;"> 0.00 </span> | <i>cs</i> <span style="color:#f80;"> 0.00</span></td>
+										</tr>
+										<tr>
+											<td class="text-right"><span class="label label-warning">Traffic</span></td>
+											<td colspan="5" id="apache_traffic"><span style="color:#f00;">0.04 </span> <i>req/s</i> | <span style="color:#080;">2</span> <i> kB/s</i> | <span style="color:#00f;"> 44.3 </span> <i> kB/req</i></td>
+										</tr>
+										<tr>
+											<td class="text-right"><span class="label label-warning">Total Traffic</span></td>
+											<td id="apache_total_traffic"><span style="color:#00f">198.6 MB</span></td>
+											<td class="text-right"><span class="label label-green">MPM</span></td>
+											<td id="apache_mpm">worker</td>
+											<td class="text-right"><span class="label label-default	">Port</span></td>
+											<td id="apache_port">443</td>
+										</tr>
+							            <tr><td colspan="6" style="padding: 0px;"></td></tr>
+									</tbody>
+								</table>
+								<table class="table table-hover" style="margin-bottom:0px;">
+									<tbody>
+										<tr>
+											<td class="text-right"><span class="label label-dark-blue">Cache Type</span></td>
+											<td id="apache_ssl_cache">SHMCB</td>
+											<td class="text-right"><span class="label label-dark-green">Shared Memory</span></td>
+											<td id="apache_ssl_mem">512 KB</td>
+											<td class="text-right"><span class="label label-teal">Entry</span></td>
+											<td id="apache_ssl_entry">0</td>
+										</tr>
+									</tbody>
+								</table>
+								<table class="table table-hover" style="margin-bottom:0px;">
+									<tbody>
+										<tr>
+											<td class="text-right"><span class="label label-brown">Session Subcache</span></td>
+											<td id="apache_ssl_subcache">0% of 32</td>
+											<td class="text-right"><span class="label label-magenta">Session Index</span>0% of 88</td>
+											<td id="apache_ssl_index"></td>
+										</tr>
+							            <tr><td colspan="8" style="padding: 0px;"></td></tr>
+									</tbody>
+								</table>
+								<table class="table table-hover" style="margin-bottom:0px;">
+									<tbody>
+										<tr>
+											<td class="text-right"><span class="label label-default">apache</span></td>
+											<td id="apache_ver">2.4.7</td>
+											<td class="text-right"><span class="label label-violet">wsgi</span></td>
+											<td id="apache_wsgi">3.4</td>
+											<td class="text-right"><span class="label label-violet">webauth</span></td>
+											<td id="apache_webauth">4.5.5</td>
+											<td class="text-right"><span class="label label-violet">ssl</span></td>
+											<td id="apache_ssl">1.0.1f</td>
+										</tr>
+							            <tr><td colspan="8" style="padding: 0px;"></td></tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<div class="well" style="margin:0px 0px 0 px 20px; padding:20px;">
+								<div class="row">
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+										<table class="table table-hover" style="margin-bottom:0px;">
+											<thead>
+												<tr>
+													<th class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></th><th class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></th>
+													<th class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></th><th class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="text-right"><span class="label label-dark-red">Processing</span></td>
+													<td id="apache_process">14</td>
+													<td class="text-right"><span class="label label-teal">Idle</span></td>
+													<td id="apache_idle">11</td>
+												</tr>
+									            <tr><td colspan="4" style="padding: 0px;"></td></tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+
+								<code id="apache_worker" style="word-wrap: wrap;"><p style="margin-bottom:0px;"><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span></p><p style="margin-bottom:0px;"><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-violet">R</span><span class="label label-success">K</span><span class="label label-violet">R</span><span class="label label-violet">R</span><span class="label label-success">K</span><span class="label label-inverse">_</span><span class="label label-inverse">_</span><span class="label label-inverse">_</span><span class="label label-violet">R</span><span class="label label-violet">R</span></p><p style="margin-bottom:0px;"><span class="label label-inverse">_</span><span class="label label-info">W</span><span class="label label-violet">R</span><span class="label label-inverse">_</span><span class="label label-info">W</span><span class="label label-violet">R</span><span class="label label-inverse">_</span><span class="label label-violet">R</span><span class="label label-violet">R</span><span class="label label-inverse">_</span><span class="label label-inverse">_</span><span class="label label-inverse">_</span><span class="label label-inverse">_</span><span class="label label-violet">R</span><span class="label label-inverse">_</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span></p><p style="margin-bottom:0px;"><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span><span class="label label-primary">.</span></p></code>
+								<table class="table table-hover" style="margin-bottom:0px;">
+									<thead>
+										<tr>
+											<th class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></th><th class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></th>
+											<th class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></th><th class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><span class="label label-inverse">_</span></td><td> Waiting for Connection</td>
+											<td><span class="label label-default">S</span></td><td> Starting up</td>
+										</tr>
+										<tr>
+											<td><span class="label label-violet">R</span></td><td> Reading Request</td>
+											<td><span class="label label-info">W</span></td><td> Sending Reply</td>
+										</tr>
+										<tr>
+											<td><span class="label label-success">K</span></td><td> Keepalive (read)</td>
+											<td><span class="label label-warning">D</span></td><td> DNS Lookup</td>
+										</tr>
+										<tr>
+											<td><span class="label label-danger">C</span></td><td> Closing Connection</td>
+											<td><span class="label label-orange">L</span></td><td> Logging</td>
+										</tr>
+										<tr>
+											<td><span class="label label-green">G</span></td><td> Gracefully Finishing</td>
+											<td><span class="label label-brown">I</span></td><td> Idle Cleanup of Worker</td>
+										</tr>
+										<tr>
+											<td><span class="label label-primary">.</span></td><td> Open Slot with NO Current Process</td>
+											<td></td><td></td>
+										</tr>
+							            <tr><td colspan="4" style="padding: 0px;"></td></tr>
+									</tbody>
+								</table>
+							</div>	
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="well" style="margin:0px 0px 0 px 20px; padding:20px;">
+								<table class="table table-hover" style="margin-bottom:0px;">
+									<thead>
+										<tr>
+											<th data-toggle="tooltip" data-placement="top" title="Child Server Number - Generation">Srv</th>
+											<th data-toggle="tooltip" data-placement="top" title="OS Process ID">PID</th>
+											<th data-toggle="tooltip" data-placement="top" title="Number of Accesses This Connection / This Child / This Slot">Acc</th>
+											<th data-toggle="tooltip" data-placement="top" title="Mode of Operation">Mode</th>
+											<th data-toggle="tooltip" data-placement="top" title="CPU Usage (Seconds)">CPU</th>
+											<th data-toggle="tooltip" data-placement="top" title="Time since Beginning of Most Recent Request (Seconds)">SS</th>
+											<th data-toggle="tooltip" data-placement="top" title="Time Required to Process Most Recent Request (Milliseconds)">Req</th>
+											<th data-toggle="tooltip" data-placement="top" title="Size Transferred by This Connection (Kilobytes)">Conn</th>
+											<th data-toggle="tooltip" data-placement="top" title="Size Transferred by This Child (Megabytes)">Child</th>
+											<th data-toggle="tooltip" data-placement="top" title="Total Size Transferred by This Slot (Megabytes)">Slot</th>
+											<th>Client</th><th>Virtual Host</th><th>Request</th>
+										</tr>
+									</thead>
+									<tbody id="apache_client"><tr><td><b>0-4</b></td><td>-</td><td>0/0/42</td><td><span class="label label-primary">.</span></td><td>4.00</td><td>46</td><td>4</td><td>0.0</td><td>0.00</td><td>0.22</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/69</td><td><span class="label label-primary">.</span></td><td>1.19</td><td>46</td><td>35</td><td>0.0</td><td>0.00</td><td>4.99</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/95</td><td><span class="label label-primary">.</span></td><td>1.14</td><td>46</td><td>19</td><td>0.0</td><td>0.00</td><td>0.93</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/108</td><td><span class="label label-primary">.</span></td><td>4.04</td><td>46</td><td>0</td><td>0.0</td><td>0.00</td><td>7.21</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/74</td><td><span class="label label-primary">.</span></td><td>0.97</td><td>46</td><td>0</td><td>0.0</td><td>0.00</td><td>1.06</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/76</td><td><span class="label label-primary">.</span></td><td>0.12</td><td>46</td><td>8</td><td>0.0</td><td>0.00</td><td>0.74</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/77</td><td><span class="label label-primary">.</span></td><td>0.97</td><td>46</td><td>0</td><td>0.0</td><td>0.00</td><td>2.00</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/118</td><td><span class="label label-primary">.</span></td><td>1.11</td><td>46</td><td>5</td><td>0.0</td><td>0.00</td><td>2.70</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/87</td><td><span class="label label-primary">.</span></td><td>1.10</td><td>46</td><td>0</td><td>0.0</td><td>0.00</td><td>5.71</td><td>127.0.0.1</td><td nowrap="">demo.t47.io:80</td><td nowrap="">GET /server-status/ HTTP/1.1</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/88</td><td><span class="label label-primary">.</span></td><td>1.10</td><td>46</td><td>0</td><td>0.0</td><td>0.00</td><td>1.18</td><td>localhost</td><td nowrap="">demo.t47.io:443</td><td nowrap="">GET /server-status/ HTTP/1.1</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/75</td><td><span class="label label-primary">.</span></td><td>3.87</td><td>46</td><td>9</td><td>0.0</td><td>0.00</td><td>1.07</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/80</td><td><span class="label label-primary">.</span></td><td>1.14</td><td>46</td><td>0</td><td>0.0</td><td>0.00</td><td>5.90</td><td>127.0.0.1</td><td nowrap="">demo.t47.io:80</td><td nowrap="">GET /server-status/ HTTP/1.1</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/88</td><td><span class="label label-primary">.</span></td><td>3.12</td><td>46</td><td>107</td><td>0.0</td><td>0.00</td><td>2.85</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/125</td><td><span class="label label-primary">.</span></td><td>0.14</td><td>46</td><td>0</td><td>0.0</td><td>0.00</td><td>3.23</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/88</td><td><span class="label label-primary">.</span></td><td>1.17</td><td>46</td><td>19</td><td>0.0</td><td>0.00</td><td>1.47</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/63</td><td><span class="label label-primary">.</span></td><td>1.01</td><td>46</td><td>0</td><td>0.0</td><td>0.00</td><td>5.38</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/65</td><td><span class="label label-primary">.</span></td><td>1.06</td><td>46</td><td>0</td><td>0.0</td><td>0.00</td><td>1.18</td><td>localhost</td><td nowrap="">demo.t47.io:443</td><td nowrap="">GET /server-status/ HTTP/1.1</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/57</td><td><span class="label label-primary">.</span></td><td>1.14</td><td>46</td><td>0</td><td>0.0</td><td>0.00</td><td>5.73</td><td>localhost</td><td nowrap="">demo.t47.io:443</td><td nowrap="">GET /server-status/ HTTP/1.1</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/88</td><td><span class="label label-primary">.</span></td><td>3.84</td><td>46</td><td>108</td><td>0.0</td><td>0.00</td><td>2.40</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/80</td><td><span class="label label-primary">.</span></td><td>1.19</td><td>46</td><td>0</td><td>0.0</td><td>0.00</td><td>5.05</td><td>127.0.0.1</td><td nowrap="">demo.t47.io:80</td><td nowrap="">GET /server-status/ HTTP/1.1</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/59</td><td><span class="label label-primary">.</span></td><td>1.19</td><td>46</td><td>0</td><td>0.0</td><td>0.00</td><td>1.77</td><td>localhost</td><td nowrap="">demo.t47.io:443</td><td nowrap="">GET /server-status/ HTTP/1.1</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/84</td><td><span class="label label-primary">.</span></td><td>1.10</td><td>46</td><td>26</td><td>0.0</td><td>0.00</td><td>6.44</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/75</td><td><span class="label label-primary">.</span></td><td>3.99</td><td>46</td><td>4</td><td>0.0</td><td>0.00</td><td>5.11</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/72</td><td><span class="label label-primary">.</span></td><td>1.16</td><td>46</td><td>0</td><td>0.0</td><td>0.00</td><td>1.56</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>0-4</b></td><td>-</td><td>0/0/64</td><td><span class="label label-primary">.</span></td><td>1.21</td><td>46</td><td>13</td><td>0.0</td><td>0.00</td><td>5.81</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">GET /admin/apache_stat/ HTTP/1.1</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/90</td><td><span class="label label-primary">.</span></td><td>2.25</td><td>55</td><td>9</td><td>0.0</td><td>0.00</td><td>2.75</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/73</td><td><span class="label label-primary">.</span></td><td>0.69</td><td>55</td><td>115</td><td>0.0</td><td>0.00</td><td>6.80</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/62</td><td><span class="label label-primary">.</span></td><td>2.41</td><td>55</td><td>0</td><td>0.0</td><td>0.00</td><td>0.44</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/111</td><td><span class="label label-primary">.</span></td><td>2.50</td><td>55</td><td>0</td><td>0.0</td><td>0.00</td><td>1.81</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/133</td><td><span class="label label-primary">.</span></td><td>1.02</td><td>55</td><td>115</td><td>0.0</td><td>0.00</td><td>7.09</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/91</td><td><span class="label label-primary">.</span></td><td>0.44</td><td>55</td><td>430</td><td>0.0</td><td>0.00</td><td>2.08</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/78</td><td><span class="label label-primary">.</span></td><td>2.50</td><td>55</td><td>20</td><td>0.0</td><td>0.00</td><td>1.79</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/106</td><td><span class="label label-primary">.</span></td><td>0.04</td><td>55</td><td>0</td><td>0.0</td><td>0.00</td><td>2.01</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/120</td><td><span class="label label-primary">.</span></td><td>1.29</td><td>55</td><td>115</td><td>0.0</td><td>0.00</td><td>1.64</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/107</td><td><span class="label label-primary">.</span></td><td>0.09</td><td>55</td><td>5</td><td>0.0</td><td>0.00</td><td>12.91</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/110</td><td><span class="label label-primary">.</span></td><td>0.02</td><td>55</td><td>7</td><td>0.0</td><td>0.00</td><td>2.39</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/119</td><td><span class="label label-primary">.</span></td><td>2.27</td><td>55</td><td>9</td><td>0.0</td><td>0.00</td><td>10.73</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/79</td><td><span class="label label-primary">.</span></td><td>0.53</td><td>55</td><td>0</td><td>0.0</td><td>0.00</td><td>3.13</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:80</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/83</td><td><span class="label label-primary">.</span></td><td>2.30</td><td>55</td><td>17</td><td>0.0</td><td>0.00</td><td>5.93</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/74</td><td><span class="label label-primary">.</span></td><td>0.60</td><td>55</td><td>0</td><td>0.0</td><td>0.00</td><td>1.54</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/82</td><td><span class="label label-primary">.</span></td><td>0.59</td><td>55</td><td>12</td><td>0.0</td><td>0.00</td><td>2.82</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/68</td><td><span class="label label-primary">.</span></td><td>0.46</td><td>55</td><td>1</td><td>0.0</td><td>0.00</td><td>1.12</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/90</td><td><span class="label label-primary">.</span></td><td>0.62</td><td>55</td><td>0</td><td>0.0</td><td>0.00</td><td>7.87</td><td>127.0.0.1</td><td nowrap="">demo.t47.io:80</td><td nowrap="">GET /server-status/ HTTP/1.1</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/83</td><td><span class="label label-primary">.</span></td><td>0.62</td><td>55</td><td>18</td><td>0.0</td><td>0.00</td><td>0.85</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/81</td><td><span class="label label-primary">.</span></td><td>2.36</td><td>55</td><td>0</td><td>0.0</td><td>0.00</td><td>1.40</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/114</td><td><span class="label label-primary">.</span></td><td>2.50</td><td>55</td><td>4</td><td>0.0</td><td>0.00</td><td>0.81</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/80</td><td><span class="label label-primary">.</span></td><td>0.57</td><td>55</td><td>19</td><td>0.0</td><td>0.00</td><td>2.31</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/123</td><td><span class="label label-primary">.</span></td><td>2.50</td><td>55</td><td>4</td><td>0.0</td><td>0.00</td><td>3.26</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/64</td><td><span class="label label-primary">.</span></td><td>1.06</td><td>55</td><td>0</td><td>0.0</td><td>0.00</td><td>4.93</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>1-4</b></td><td>-</td><td>0/0/66</td><td><span class="label label-primary">.</span></td><td>2.62</td><td>55</td><td>0</td><td>0.0</td><td>0.00</td><td>2.60</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/2/10</td><td><span class="label label-violet">R</span></td><td>0.66</td><td>20</td><td>123</td><td>0.0</td><td>0.03</td><td>0.06</td><td>123.45.67.890</td><td nowrap=""></td><td nowrap=""></td></tr><tr><td><b>2-4</b></td><td>22292</td><td>2/6/11</td><td><span class="label label-success">K</span></td><td>0.79</td><td>8</td><td>11</td><td>56.8</td><td>0.08</td><td>0.60</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">GET /admin/apache_stat/ HTTP/1.1</td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/1/8</td><td><span class="label label-violet">R</span></td><td>0.44</td><td>14</td><td>0</td><td>0.0</td><td>0.00</td><td>2.51</td><td>123.45.67.890</td><td nowrap=""></td><td nowrap=""></td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/2/6</td><td><span class="label label-violet">R</span></td><td>0.70</td><td>17</td><td>0</td><td>0.0</td><td>0.05</td><td>0.08</td><td>123.45.67.890</td><td nowrap=""></td><td nowrap=""></td></tr><tr><td><b>2-4</b></td><td>22292</td><td>1/3/14</td><td><span class="label label-success">K</span></td><td>0.80</td><td>5</td><td>12</td><td>28.6</td><td>0.06</td><td>13.34</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">GET /admin/apache_stat/ HTTP/1.1</td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/3/11</td><td><span class="label label-inverse">_</span></td><td>0.52</td><td>4</td><td>12</td><td>0.0</td><td>0.06</td><td>0.12</td><td>ip-987-65-43-210.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/1/24</td><td><span class="label label-inverse">_</span></td><td>0.80</td><td>6</td><td>0</td><td>0.0</td><td>0.03</td><td>1.16</td><td>localhost</td><td nowrap="">demo.t47.io:443</td><td nowrap="">GET /server-status/ HTTP/1.1</td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/3/9</td><td><span class="label label-inverse">_</span></td><td>0.81</td><td>2</td><td>0</td><td>0.0</td><td>0.06</td><td>0.09</td><td>localhost</td><td nowrap="">demo.t47.io:443</td><td nowrap="">GET /server-status/ HTTP/1.1</td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/0/10</td><td><span class="label label-violet">R</span></td><td>7.78</td><td>3</td><td>0</td><td>0.0</td><td>0.00</td><td>0.44</td><td>123.45.67.890</td><td nowrap=""></td><td nowrap=""></td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/2/15</td><td><span class="label label-violet">R</span></td><td>0.73</td><td>11</td><td>0</td><td>0.0</td><td>0.05</td><td>0.13</td><td>123.45.67.890</td><td nowrap=""></td><td nowrap=""></td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/3/31</td><td><span class="label label-inverse">_</span></td><td>0.79</td><td>8</td><td>0</td><td>0.0</td><td>0.03</td><td>0.37</td><td>localhost</td><td nowrap="">demo.t47.io:443</td><td nowrap="">GET /server-status/ HTTP/1.1</td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/6/14</td><td><span class="label label-info">W</span></td><td>0.78</td><td>0</td><td>0</td><td>0.0</td><td>0.08</td><td>0.14</td><td>127.0.0.1</td><td nowrap="">demo.t47.io:443</td><td nowrap="">GET /server-status/ HTTP/1.1</td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/4/11</td><td><span class="label label-violet">R</span></td><td>0.76</td><td>4</td><td>0</td><td>0.0</td><td>0.08</td><td>0.15</td><td>987.65.43.210</td><td nowrap=""></td><td nowrap=""></td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/1/6</td><td><span class="label label-inverse">_</span></td><td>0.82</td><td>0</td><td>0</td><td>0.0</td><td>0.00</td><td>0.02</td><td>127.0.0.1</td><td nowrap="">demo.t47.io:80</td><td nowrap="">GET /server-status/ HTTP/1.1</td></tr><tr><td><b>2-4</b></td><td>22292</td><td>1/3/7</td><td><span class="label label-info">W</span></td><td>0.81</td><td>0</td><td>0</td><td>28.6</td><td>0.08</td><td>0.14</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">GET /admin/apache_stat/ HTTP/1.1</td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/4/15</td><td><span class="label label-violet">R</span></td><td>0.77</td><td>0</td><td>0</td><td>0.0</td><td>0.09</td><td>0.23</td><td>987.65.43.210</td><td nowrap=""></td><td nowrap=""></td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/0/10</td><td><span class="label label-inverse">_</span></td><td>7.78</td><td>5</td><td>0</td><td>0.0</td><td>0.00</td><td>0.05</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/5/9</td><td><span class="label label-violet">R</span></td><td>0.75</td><td>6</td><td>0</td><td>0.0</td><td>0.03</td><td>0.05</td><td>123.45.67.890</td><td nowrap=""></td><td nowrap=""></td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/2/8</td><td><span class="label label-violet">R</span></td><td>0.78</td><td>0</td><td>0</td><td>0.0</td><td>0.05</td><td>0.28</td><td>123.45.67.890</td><td nowrap=""></td><td nowrap=""></td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/5/8</td><td><span class="label label-inverse">_</span></td><td>0.76</td><td>4</td><td>12</td><td>0.0</td><td>0.14</td><td>0.18</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/2/9</td><td><span class="label label-inverse">_</span></td><td>0.81</td><td>3</td><td>0</td><td>0.0</td><td>0.03</td><td>0.09</td><td>127.0.0.1</td><td nowrap="">demo.t47.io:80</td><td nowrap="">GET /server-status/ HTTP/1.1</td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/4/9</td><td><span class="label label-inverse">_</span></td><td>0.80</td><td>6</td><td>1</td><td>0.0</td><td>0.08</td><td>0.14</td><td>127.0.0.1</td><td nowrap="">demo.t47.io:80</td><td nowrap="">GET /server-status/ HTTP/1.1</td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/0/29</td><td><span class="label label-inverse">_</span></td><td>6.57</td><td>2</td><td>117</td><td>0.0</td><td>0.00</td><td>3.21</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/1/4</td><td><span class="label label-violet">R</span></td><td>0.73</td><td>8</td><td>0</td><td>0.0</td><td>0.00</td><td>0.01</td><td>123.45.67.890</td><td nowrap=""></td><td nowrap=""></td></tr><tr><td><b>2-4</b></td><td>22292</td><td>0/4/16</td><td><span class="label label-inverse">_</span></td><td>0.75</td><td>7</td><td>11</td><td>0.0</td><td>0.08</td><td>2.37</td><td>ip-123-45-67-890.us-west-2.comp</td><td nowrap="">demo.t47.io:443</td><td nowrap="">NULL</td></tr></tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

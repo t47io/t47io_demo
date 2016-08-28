@@ -1,0 +1,115 @@
+{
+    "admins": [
+        {
+            "email": "dark_templar@t47.io",
+            "id": "dark_templar",
+            "image": "/site_media/images/avatars/dark_templar.png",
+            "name": "Dark Templar",
+            "presence": true
+        },
+        {
+            "email": "archon@t47.io",
+            "id": "archon",
+            "image": "/site_media/images/avatars/archon.png",
+            "name": "Archon",
+            "presence": true
+        }
+    ],
+    "gones": [
+        {
+            "email": "probe@t47.io",
+            "id": "probe",
+            "image": "/site_media/images/avatars/probe.png",
+            "name": "Probe",
+            "presence": false
+        },
+        {
+            "email": "colossus@t47.io",
+            "id": "colossus",
+            "image": "/site_media/images/avatars/colossus.png",
+            "name": "Colossus",
+            "presence": false
+        },
+        {
+            "email": "phoenix@t47.io",
+            "id": "phoenix",
+            "image": "/site_media/images/avatars/phoenix.png",
+            "name": "Phoenix",
+            "presence": false
+        },
+        {
+            "email": "observer@t47.io",
+            "id": "observer",
+            "image": "/site_media/images/avatars/observer.png",
+            "name": "Observer",
+            "presence": false
+        },
+        {
+            "email": "high_templar@t47.io",
+            "id": "high_templar",
+            "image": "/site_media/images/avatars/high_templar.png",
+            "name": "High Templar",
+            "presence": false
+        }
+    ],
+    "owners": [
+        {
+            "email": "mothership@t47.io",
+            "id": "mothership",
+            "image": "/site_media/images/avatars/monthership.png",
+            "name": "Mothership",
+            "presence": false
+        }
+    ],
+    "users": [
+        {
+            "email": "zealot@t47.io",
+            "id": "zealot",
+            "image": "/site_media/images/avatars/zealot.png",
+            "name": "Zealot",
+            "presence": true
+        },
+        {
+            "email": "sentry@t47.io",
+            "id": "sentry",
+            "image": "/site_media/images/avatars/sentry.png",
+            "name": "Sentry",
+            "presence": false
+        },
+        {
+            "email": "immortal@t47.io",
+            "id": "immortal",
+            "image": "/site_media/images/avatars/immortal.png",
+            "name": "Immortal",
+            "presence": true
+        },
+        {
+            "email": "stalker@t47.io",
+            "id": "stalker",
+            "image": "/site_media/images/avatars/stalker.png",
+            "name": "Stalker",
+            "presence": true
+        },
+        {
+            "email": "prism@t47.io",
+            "id": "prism",
+            "image": "/site_media/images/avatars/prism.png",
+            "name": "Prism",
+            "presence": true
+        },
+        {
+            "email": "void_ray@t47.io",
+            "id": "void_ray",
+            "image": "/site_media/images/avatars/void_ray.png",
+            "name": "Void Ray",
+            "presence": false
+        },
+        {
+            "email": "carrier@t47.io",
+            "id": "carrier",
+            "image": "/site_media/images/avatars/carrier.png",
+            "name": "Carrier",
+            "presence": true
+        }
+    ]
+}

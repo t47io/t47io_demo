@@ -1,0 +1,42 @@
+{
+    "access_token": "access_token", 
+    "client_id": "client_id.apps.googleusercontent.com",
+    "projs": [
+        {
+            "bounceRate": "69.77", 
+            "id": "12345678",
+            "name": "The Magic Database", 
+            "pageviews": "595",
+            "pageviewsPerSession": "2.77", 
+            "sessions": "215", 
+            "sessionDuration": "0:00:28",
+            "track_id": "UA-12345678-1", 
+            "url": "http://magic.t47.io", 
+            "users": "168"
+        },
+        {
+            "bounceRate": "27.35", 
+            "id": "23456789", 
+            "name": "The Magic Server",
+            "pageviews": "975", 
+            "pageviewsPerSession": "8.33", 
+            "sessions": "117", 
+            "sessionDuration": "0:00:58", 
+            "track_id": "UA-12345678-2", 
+            "url": "http://magic.t47.io", 
+            "users": "36"
+        }, 
+        {
+            "bounceRate": "32.58", 
+            "id": "01234567", 
+            "name": "The Magic Website", 
+            "pageviews": "1443", 
+            "pageviewsPerSession": "2.98", 
+            "sessions": "485", 
+            "sessionDuration": "0:01:09", 
+            "track_id": "UA-12345678-3", 
+            "url": "http://magic.t47.io", 
+            "users": "368"
+        }
+    ]
+}

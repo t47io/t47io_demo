@@ -1,0 +1,3 @@
+S'google.visualization.Query.setResponse({"status":"ok","table":{"rows":[{"c":[{"v":"New Visitor"},{"v":333.0}]},{"c":[{"v":"Returning Visitor"},{"v":179.0}]}],"cols":[{"type":"string","id":"Category","label":"Category"},{"type":"number","id":"Sessions","label":"Sessions"}]},"reqId":"__REQ_ID__","version":"0.6"});'
+p0
+.

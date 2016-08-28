@@ -1,0 +1,10 @@
+{% extends "admin/base.html" %}
+{% load i18n admin_static %}
+
+{% block bodyclass %}dashboard{% endblock %}
+
+{% block content %}
+	<div id="content-main" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<iframe src="/admin/browse/" class="well" id="iframe" scrolling="no"></iframe>
+	</div>
+{% endblock %}

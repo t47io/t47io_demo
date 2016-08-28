@@ -1,0 +1,17 @@
+{
+    "access_token": "access_token", 
+    "bounceRate": "32.58", 
+    "bounceRate_prev": "2.65", 
+    "client_id": "client_id.apps.googleusercontent.com", 
+    "id": "103952031",
+    "pageviews": "1443", 
+    "pageviews_prev": "-1249", 
+    "pageviewsPerSession": "2.98", 
+    "pageviewsPerSession_prev": "-0.84", 
+    "sessions": "485", 
+    "sessions_prev": "-220", 
+    "sessionDuration": "0:01:09", 
+    "sessionDuration_prev": "-0:00:52", 
+    "users": "368", 
+    "users_prev": "-146"
+}

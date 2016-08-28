@@ -1,0 +1,338 @@
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="robots" content="NONE,NOARCHIVE"/>
+    <title>Lab Demo: Group Member Website</title>
+    <style type="text/css">body>div:not(#wait){opacity:0;}</style>
+    <script type="text/javascript">
+      var app = {DEBUG_DIR: "{{DEBUG_DIR}}", DEBUG_STR: "{{DEBUG_STR}}", js_ver: {% autoescape off %}{{js_ver}}{% endautoescape %}};
+    </script>
+    <script type="text/javascript" src="/site_media/js/head.load.min.js" data-headjs-load="/site_media/js/group/{{DEBUG_DIR}}load{{DEBUG_STR}}.js"></script>
+    {% block head %}{% endblock %}
+
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','/site_media/js/public/{{DEBUG_DIR}}ga{{DEBUG_STR}}.js','ga');
+
+      ga('create', '{{TRACKING_ID}}', 'auto');
+      ga('send', 'pageview');
+    </script>
+</head>
+
+<body>
+  <div id="wait" class="modal" style="display:block; position:fixed; z-index:-1; top:0; left:0; height:100%; width:100%; opacity:0.75;">
+    <img src="/site_media/images/fg_loader.gif" style="position:absolute; top:50%; left:50%; margin-top:-96px; margin-left:-96px; height:192px; width:192px;" />
+  </div>
+
+  <div class="navbar navbar-fixed-top" id="nav_load">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <ul class="nav navbar-nav navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <li class="navbar-icon" id="nav_collapse">
+            <a><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+          </li>
+        </ul>
+        <a class="navbar-brand" href="/group/" id="nav_logo">
+          &nbsp;&nbsp;Lab Demo
+        </a>
+      </div>
+      <div class="navbar-collapse collapse" >
+        <ul class="nav navbar-nav" >
+          <li id="nav_toggle">
+            <a><span class="glyphicon glyphicon-th-list"></span></a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li id="nav_external" class="navbar-icon">
+            <a href="/">
+              <span style="font-weight:bold;">
+                <span class="glyphicon glyphicon-globe"></span>
+                <span id="nav_external_text" style="display:none; color:#ff912e;">&nbsp;&nbsp;External&nbsp;&nbsp;</span>
+              </span>
+            </a>
+          </li>
+          <li id="nav_internal" class="navbar-icon">
+            <a href="/group/">
+              <span style="font-weight:bold; color:#eeb211 !important;">
+                <span class="glyphicon glyphicon-inbox"></span>
+                <span id="nav_internal_text" style="color:#eeb211;">&nbsp;&nbsp;Internal&nbsp;&nbsp;</span>
+              </span>
+            </a>
+          </li>
+          <li id="nav_admin" class="navbar-icon">
+            <a href="/admin/">
+              <span style="font-weight:bold;">
+                <span class="glyphicon glyphicon-tower"></span>
+                <span id="nav_admin_text" style="display:none; color:#ff5c2b;">&nbsp;&nbsp;Admin&nbsp;&nbsp;</span>
+              </span>
+            </a>
+          </li>
+        </ul>      
+
+        <div class="pull-right row">
+          <ul class="nav navbar-nav">
+            <li id="nav_upload" class="navbar-icon">
+              <a href="/group/archive/upload/"><span class="glyphicon glyphicon-open"></span></a>
+            </li>
+            <li id="nav_email" class="dropdown navbar-icon">
+              <a><span class="glyphicon glyphicon-send"></span></a>
+              <ul class="dropdown-menu dropdown-menu-right nav nav-pills nav-stacked" role="menu">
+                <li style="width:500px;" class="nav-list">
+                  <h3><span class="glyphicon glyphicon-question-sign"></span>&nbsp;&nbsp;Ask the <span class="label label-success">Admin</span></h3>
+                  <br/>
+                  <form enctype="multipart/form-data" action="/group/email_admin/" method="post" id="form_email">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <div class="input-group">
+                          <span class="input-group-addon" style="color:#000;"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;From&nbsp;&nbsp;&nbsp;</span>
+                          {% render_field email_form.email_from class+="form-control" placeholder="Your Email..." %}
+                        </div>
+                      </div>
+                      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <div class="input-group">
+                          <span class="input-group-addon" style="color:#000;"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                          <input class="form-control" type="text" id="form_email_to_disp" disabled />
+                        </div>
+                      </div>
+                      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <div class="input-group">
+                          <span class="input-group-addon" style="color:#000;"><span class="glyphicon glyphicon-text-background"></span>&nbsp;&nbsp;Subject</span>
+                          {% render_field email_form.email_subject class+="form-control" placeholder="What`s up?" %}
+                        </div>
+                      </div>
+                      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        {% render_field email_form.email_content class+="form-control" placeholder="Tell me more..." rows="5" %}
+                      </div>
+                      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                    </div>
+                    <br/>
+
+                    <div class="row">
+                      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <div class="sprite i_14"><i class="i_slack"></i></div>&nbsp;&nbsp;<i>is faster!</i>
+                        <span class="pull-right">
+                          <button id="form_email_submit" type="submit" class="btn btn-primary clickable"><span class="glyphicon glyphicon-hourglass"></span>&nbsp;&nbsp;Send&nbsp;&nbsp;</button>
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+                          <button type="button" class="btn btn-default" id="form_email_clear"><span class="glyphicon glyphicon-erase"></span>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                        </span>
+                      </div>
+                      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                    </div>
+                  </form>
+
+                  <div class="row" style="width:490px; display:none;" id="form_email_notice">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <br/>
+                      <div class="alert alert-warning" role="alert">
+                        <p>
+                          <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>&nbsp;&nbsp;
+                          <b>SENDING</b>: The following messages were produced:
+                        </p>
+                        <p id="form_email_msg"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <br/>
+                </li>
+              </ul>
+            </li>
+            <li id="nav_profile" class="dropdown navbar-icon" style="margin-right: 15px;">
+              <a><span class="glyphicon glyphicon-user"></span></a>
+              <ul class="dropdown-menu dropdown-menu-right nav nav-pills nav-stacked" role="menu">
+                <li style="width:500px;" class="nav-list">
+                  <br/>
+                  <div style="float:left; padding-right:20px;" id="nav_user_photo"></div>
+                  <p><b class="lead" id="nav_user_name">Demo</b><span class="pull-right" style="padding-right:20px;"><kbd id="nav_user_id">N/A</kbd></span></p>
+                  <p style="line-height:25px;">
+                    <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>&nbsp;&nbsp;<span id="nav_user_aff">Demo Visitor</span>
+                    <br/>
+                    <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>&nbsp;&nbsp;<span id="nav_user_stat"><span class="label label-violet">Guest</span></span>
+                    <span class="pull-right" style="padding-right:20px;"><a id="nav_user_cap" target="_blank"><span class="label label-warning">CAP Profile</span></a></span>
+                  </p>
+                  <p style="line-height:25px; margin-top:30px;">
+		                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;
+                    Email:&nbsp;&nbsp;<a target="_blank" style="text-decoration:underline;" id="nav_user_email">demo@t47.io</a>
+                    <!-- <span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;&nbsp;
+                    Last Login:&nbsp;&nbsp;<span class="label label-primary">{{ user.last_login|date:"Y-m-d H:i:s" }}</span> -->
+                    <br/>
+                    <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>&nbsp;&nbsp;
+                    Status:&nbsp;&nbsp;
+                    <span id="nav_user_type" class="label"></span>
+                  </p>
+                </li>
+                <li class="divider"></li>
+                <li class="nav-list pull-right">
+                  <a style="display:inline-block;" href="/password/"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>&nbsp;&nbsp;Change Password</a>
+                  <a style="display:inline-block; margin-right:20px;" href="/signout/"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;&nbsp;Sign Out</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+  <!-- Sticky footer wrap -->
+  <div id="wrapper">
+    <div id="sidebar-wrapper" class="bgimg-lg">
+      <ul class="nav nav-pills nav-stacked">
+        <li id="nav_home_lg" class="nav-ul nav-ul-lg li-info" style="margin-top: 10px;">
+          <a href="/group/"><span class="lead glyphicon glyphicon-home"></span></a>
+        </li>
+        <li id="nav_home" class="nav-ul li-info" style="margin-top: 10px;">
+          <a href="/group/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Home</a>
+        </li>
+
+        <li id="nav_meeting_lg" class="nav-ul nav-ul-lg li-danger">
+          <a href="/group/schedule/"><span class="lead glyphicon glyphicon-bell"></span></a>
+        </li>
+        <li id="nav_meeting" class="nav-ul li-danger">
+          <a href="/group/schedule/"><span class="glyphicon glyphicon-bell"></span>&nbsp;&nbsp;Group Meetings</a>
+          <ul class="nav-li-sub">
+            <li id="nav_meeting-schedule" class="nav-li"><span class="glyphicon glyphicon-time nav-icon"></span><a href="/group/schedule/">&nbsp;&nbsp;Schedule</a></li>
+            <li id="nav_meeting-flash_slide" class="nav-li"><span class="glyphicon glyphicon-blackboard nav-icon"></span><a href="/group/flash_slide/">&nbsp;&nbsp;Flash Slides</a></li>
+            <li id="nav_meeting-journal_club" class="nav-li"><span class="glyphicon glyphicon-book nav-icon"></span><a href="/group/journal_club/">&nbsp;&nbsp;Journal Clubs</a></li>
+            <li id="nav_meeting-khala_youtube" class="nav-li"><span class="glyphicon glyphicon-facetime-video nav-icon"></span><a href="/group/khala_youtube/">&nbsp;&nbsp;Khala Special</a></li>
+            <li id="nav_meeting-rotation" class="nav-li"><span class="glyphicon glyphicon-retweet nav-icon"></span><a href="/group/rotation/">&nbsp;&nbsp;Rotation Students</a></li>
+          </ul>
+        </li>
+
+        <li id="nav_cal_lg" class="nav-ul nav-ul-lg li-violet"><a href="/group/calendar/"><span class="lead glyphicon glyphicon-calendar"></span></a></li>
+        <li id="nav_cal" class="nav-ul li-violet"><a href="/group/calendar/"><span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;Calendar</a></li>
+
+        <li id="nav_res_lg" class="nav-ul nav-ul-lg li-warning">
+          <a href="/group/gdocs" ><span class="lead glyphicon glyphicon-briefcase"></span></a>
+        </li>
+        <li id="nav_res" class="nav-ul li-warning">
+          <a href="/group/gdocs/"><span class="glyphicon glyphicon-briefcase"></span>&nbsp;&nbsp;Resources</a>
+          <ul class="nav-li-sub">
+            <li id="nav_res-gdocs" class="nav-li"><div class="sprite i_14 nav-icon"><i class="i_gdrive_o"></i></div><a href="/group/gdocs/">&nbsp;&nbsp;Google Docs</a></li>
+            <li id="nav_res-archive" class="nav-li"><span class="glyphicon glyphicon-cd nav-icon"></span><a href="/group/archive/">&nbsp;&nbsp;Presentations Archive</a></li>
+            <li id="nav_res-contact" class="nav-li"><span class="glyphicon glyphicon-earphone nav-icon"></span><a href="/group/contact/">&nbsp;&nbsp;Contacts</a></li>
+          </ul>
+        </li>
+
+        <li id="nav_server_lg" class="nav-ul nav-ul-lg li-green">
+          <a href="/group/aws/" ><span class="lead glyphicon glyphicon-tasks"></span></a>
+        </li>
+        <li id="nav_server" class="nav-ul li-green">
+          <a href="/group/aws/"><span class="glyphicon glyphicon-tasks"></span>&nbsp;&nbsp;Servers</a>
+          <ul class="nav-li-sub">
+            <li id="nav_server-aws" class="nav-li"><div class="sprite i_14 nav-icon"><i class="i_aws_o"></i></div><a href="/group/aws/">&nbsp;&nbsp;Amazon Web Services</a></li>
+            <li id="nav_server-ga" class="nav-li"><div class="sprite i_14 nav-icon"><i class="i_ga_o"></i></div><a href="/group/ga/">&nbsp;&nbsp;Google Analytics</a></li>
+          </ul>
+        </li>
+        <li id="nav_service_lg" class="nav-ul nav-ul-lg li-orange">
+          <a href="/group/bot/" ><span class="lead glyphicon glyphicon-hourglass"></span></a>
+        </li>
+        <li id="nav_service" class="nav-ul li-orange">
+          <a href="/group/bot/"><span class="glyphicon glyphicon-hourglass"></span>&nbsp;&nbsp;Services</a>
+          <ul class="nav-li-sub">
+            <li id="nav_service-bot" class="nav-li"><div class="sprite i_14 nav-icon"><i class="i_bot_o"></i></div><a href="/group/bot/">&nbsp;&nbsp;Demo Bot</a></li>
+            <li id="nav_service-git" class="nav-li"><div class="sprite i_14 nav-icon"><i class="i_git_o"></i></div><a href="/group/git/">&nbsp;&nbsp;GitHub</a></li>
+            <li id="nav_service-slack" class="nav-li"><div class="sprite i_14 nav-icon"><i class="i_slack_o"></i></div><a href="/group/slack/">&nbsp;&nbsp;Slack</a></li>
+            <li id="nav_service-dropbox" class="nav-li"><div class="sprite i_14 nav-icon"><i class="i_dropbox_o"></i></div><a href="/group/dropbox/">&nbsp;&nbsp;Dropbox</a></li>
+          </ul>
+        </li>
+
+        <li id="nav_misc_lg" class="nav-ul nav-ul-lg li-primary">
+          <a href="/group/misc/"><span class="lead glyphicon glyphicon-magnet"></span></a>
+        </li>
+        <li id="nav_misc" class="nav-ul li-primary">
+          <a href="/group/misc/"><span class="glyphicon glyphicon-magnet"></span>&nbsp;&nbsp;Miscellaneous</a>
+          <ul class="nav-li-sub">
+            <li id="nav_misc-misc" class="nav-li"><span class="glyphicon glyphicon-hand-right nav-icon"></span><a href="/group/misc/">&nbsp;&nbsp;Onboarding</a></li>
+            <li id="nav_misc-error" class="nav-li"><span class="glyphicon glyphicon-volume-off nav-icon"></span><a href="/group/error/">&nbsp;&nbsp;Error Pages</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+
+    <div id="page-content-wrapper">
+    <ul class="breadcrumb">
+      <li>
+        <a href="/group/">Home</a>
+        {% if title %}
+        <span class="divider">&raquo;</span>
+        </li>
+        <lspan class="glyphicon glyphactive">
+        {{ title }}
+        {% endif %}
+      </li>
+    </ul>
+
+    <!-- Content -->
+    <div class="page-content">
+      <div class="container-fluid" id="content">
+        <div class="row" id="content_wrapper">
+          {% block content %}{% endblock %}
+        </div>
+
+        <div id="sys-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalStat" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content panel-default">
+              <div class="modal-header panel-heading">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">
+                  <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    &nbsp;&nbsp;Action Received
+                </h4>
+              </div>
+              <div class="modal-body panel-body">
+                <h2 class="text-center"><span class="label label-success" id="sys-head"></span></h2>
+                <br/>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <p class="lead" id="sys-msg"></p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      {% block footer %}
+        <hr/>
+        <div class="container-fluid starter-template" id="footer" style="padding: 0px 15px;">
+          {% include "media/html/_footer.html" %}
+        </div>
+      {% endblock %}
+      </div>
+    </div>
+    <!-- END Content -->
+    </div>
+  </div>
+
+  <a href="#" id="top" style="z-index:2000;">
+    <div style="position:fixed; display:block; right:-5%; bottom:100px; opacity:0.85; z-index:2000; width:60px; height:60px;"><i class="nav_top"></i></div>
+  </a>
+
+  {% block script %}{% endblock %}
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" ></script>
+ </body>
+</html>

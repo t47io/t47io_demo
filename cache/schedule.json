@@ -1,0 +1,26 @@
+{
+    "last": {
+        "date": "Jan 15",
+        "note": "",
+        "type": "KS",
+        "who": "Zealot"
+    },
+    "next": {
+        "date": "Jan 29",
+        "note": "",
+        "type": "KS",
+        "who": "High Templar"
+    },
+    "place": "A1402",
+    "this": {
+        "date": "Jan 22",
+        "note": "",
+        "type": "JC",
+        "who": "Archon"
+    },
+    "time": {
+        "end": "10:00am",
+        "start": "8:00am"
+    },
+    "weekday": 5
+}

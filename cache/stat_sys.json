@@ -1,0 +1,26 @@
+{
+    "cpu": [
+        "0.48",
+        "0.22",
+        "0.05"
+    ],
+    "disk": [
+        "54.4 G",
+        "9.6 G"
+    ],
+    "drive": [
+        "6.4 G",
+        "9.6 G",
+        "16.0 G"
+    ],
+    "memory": [
+        "1638.4 M",
+        "409.6 M"
+    ],
+    "path": {
+        "data": "/venv/t47io_demo/data",
+        "media": "/venv/t47io_demo/media",
+        "root": "/venv/t47io_demo"
+    },
+    "ssl_cert": "2020-02-20 20:20:20"
+}

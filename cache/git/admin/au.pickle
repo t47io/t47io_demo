@@ -1,0 +1,3 @@
+S'google.visualization.Query.setResponse({"status":"ok","table":{"rows":[{"c":[{"v":"t47io"},{"v":506},{"v":131504},{"v":119952}]}],"cols":[{"type":"string","id":"Contributors","label":"Name"},{"type":"number","id":"Commits","label":"Commits"},{"type":"number","id":"Additions","label":"Additions"},{"type":"number","id":"Deletions","label":"Deletions"}]},"reqId":"__REQ_ID__","version":"0.6"});'
+p0
+.

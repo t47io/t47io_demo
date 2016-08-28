@@ -1,0 +1,77 @@
+{
+    "admins": [],
+    "gones": [],
+    "owners": [],
+    "users": [
+        {
+            "email": "zealot@t47.io",
+            "id": "zealot",
+            "name": "Zealot",
+            "last_seen": "2015-06-07 11:43:42",
+            "presence": true
+        },
+        {
+            "email": "sentry@t47.io",
+            "id": "sentry",
+            "name": "Sentry",
+            "last_seen": "2015-06-07 11:45:42",
+            "presence": false
+        },
+        {
+            "email": "dark_templar@t47.io",
+            "id": "dark_templar",
+            "name": "Dark Templar",
+            "last_seen": "2015-07-01 18:13:22",
+            "presence": true
+        },
+        {
+            "email": "immortal@t47.io",
+            "id": "immortal",
+            "name": "Immortal",
+            "last_seen": "2015-12-01 14:44:52",
+            "presence": true
+        },
+        {
+            "email": "stalker@t47.io",
+            "id": "stalker",
+            "name": "Stalker",
+            "last_seen": "2015-12-01 14:44:52",
+            "presence": true
+        },
+        {
+            "email": "prism@t47.io",
+            "id": "prism",
+            "name": "Prism",
+            "last_seen": "2015-12-01 14:44:52",
+            "presence": true
+        },
+        {
+            "email": "void_ray@t47.io",
+            "id": "void_ray",
+            "name": "Void Ray",
+            "last_seen": "2015-12-02 21:01:03",
+            "presence": false
+        },
+        {
+            "email": "carrier@t47.io",
+            "id": "carrier",
+            "name": "Carrier",
+            "last_seen": "2015-12-02 21:01:03",
+            "presence": true
+        },
+        {
+            "email": "mothership@t47.io",
+            "id": "mothership",
+            "name": "Mothership",
+            "last_seen": "2015-12-02 21:01:03",
+            "presence": false
+        },
+        {
+            "email": "archon@t47.io",
+            "id": "archon",
+            "name": "Archon",
+            "last_seen": "2015-1-02 23:31:55",
+            "presence": true
+        }
+    ]
+}

@@ -1,0 +1,103 @@
+{
+    "arxiv": [
+        38,
+        "285 MB"
+    ],
+    "backup": {
+        "all": "421.5 MB",
+        "apache": [
+            "/venv/t47io_demo/backup/backup_apache.tgz",
+            "40.6 KB"
+        ],
+        "config": [
+            "/venv/t47io_demo/backup/backup_config.tgz",
+            "3.9 KB"
+        ],
+        "data": [
+            "/venv/t47io_demo/backup/backup_static.tgz",
+            "420.6 MB"
+        ],
+        "mysql": [
+            "/venv/t47io_demo/backup/backup_mysql.tgz",
+            "899.5 KB"
+        ]
+    },
+    "gdrive": [
+        [
+            "Demo_20160305_config.tgz",
+            "4.1 MB",
+            "2016-03-05 07:15:57"
+        ],
+        [
+            "Demo_20160305_apache.tgz",
+            "41.8 KB",
+            "2016-03-05 07:15:56"
+        ],
+        [
+            "Demo_20160305_static.tgz",
+            "965.0 MB",
+            "2016-03-05 07:15:54"
+        ],
+        [
+            "Demo_20160305_mysql.tgz",
+            "1.9 MB",
+            "2016-03-05 07:15:04"
+        ],
+        [
+            "Demo_20160227_config.tgz",
+            "4.1 MB",
+            "2016-02-27 07:16:04"
+        ],
+        [
+            "Demo_20160227_apache.tgz",
+            "41.8 KB",
+            "2016-02-27 07:16:03"
+        ],
+        [
+            "Demo_20160227_static.tgz",
+            "965.0 MB",
+            "2016-02-27 07:16:02"
+        ],
+        [
+            "Demo_20160227_mysql.tgz",
+            "1.9 MB",
+            "2016-02-27 07:15:11"
+        ],
+        [
+            "Demo_20160220_config.tgz",
+            "4.1 MB",
+            "2016-02-20 07:16:01"
+        ],
+        [
+            "Demo_20160220_apache.tgz",
+            "41.8 KB",
+            "2016-02-20 07:15:59"
+        ],
+        [
+            "Demo_20160220_static.tgz",
+            "965.0 MB",
+            "2016-02-20 07:15:57"
+        ],
+        [
+            "Demo_20160220_mysql.tgz",
+            "1.9 MB",
+            "2016-02-20 07:15:05"
+        ]
+    ],
+    "news": [
+        24,
+        "798.3 KB"
+    ],
+    "ppl": [
+        24,
+        "309.7 KB"
+    ],
+    "pub": [
+        100,
+        "425.6 MB"
+    ],
+    "roton": [
+        28,
+        "230.3 MB"
+    ]
+}

@@ -1,0 +1,123 @@
+{
+    "ebs": [
+        {
+            "encrypted": false,
+            "id": "vol-12345678",
+            "name": "ebs-1",
+            "region": "us-west-2b",
+            "size": 32,
+            "status": "in-use",
+            "type": "gp2"
+        },
+        {
+            "encrypted": false,
+            "id": "vol-23456789",
+            "name": "ebs-2",
+            "region": "us-west-2b",
+            "size": 32,
+            "status": "in-use",
+            "type": "gp2"
+        },
+        {
+            "encrypted": false,
+            "id": "vol-01234567",
+            "name": "ebs-3",
+            "region": "us-west-2a",
+            "size": 64,
+            "status": "in-use",
+            "type": "gp2"
+        }
+    ],
+    "ec2": [
+        {
+            "arch": "x86_64",
+            "credit": "119.5",
+            "dns": "ec2-12-34-567-89.us-west-2.compute.amazonaws.com",
+            "id": "i-12345678",
+            "name": "ec2-1",
+            "region": "us-west-2b",
+            "status": 16,
+            "type": "t2.micro"
+        },
+        {
+            "arch": "x86_64",
+            "credit": "286.4",
+            "dns": "ec2-12-34-567-8.us-west-2.compute.amazonaws.com",
+            "id": "i-23456789",
+            "name": "ec2-2",
+            "region": "us-west-2b",
+            "status": 16,
+            "type": "t2.small"
+        },
+        {
+            "arch": "x86_64",
+            "credit": "574.7",
+            "dns": "ec2-12-34-567-890.us-west-2.compute.amazonaws.com",
+            "id": "i-01234567",
+            "name": "ec2-3",
+            "region": "us-west-2a",
+            "status": 16,
+            "type": "t2.medium"
+        }
+    ],
+    "elb": [
+        {
+            "dns": "elb-1-1234567890.us-west-2.elb.amazonaws.com",
+            "name": "elb-1",
+            "region": "us-west-2b",
+            "status": true
+        },
+        {
+            "dns": "elb-2-1234567890.us-west-2.elb.amazonaws.com",
+            "name": "elb-2",
+            "region": "us-west-2b",
+            "status": true
+        }
+    ],
+    "table": [
+        {
+            "ebs": {
+                "id": "vol-12345678",
+                "name": "ebs-1",
+                "status": "off"
+            },
+            "ec2": {
+                "id": "i-12345678",
+                "name": "ec2-1",
+                "status": 32
+            },
+            "elb": {
+                "name": "elb-1",
+                "status": false
+            }
+        },
+        {
+            "ebs": {
+                "id": "vol-23456789",
+                "name": "ebs-2",
+                "status": "in-use"
+            },
+            "ec2": {
+                "id": "i-23456789",
+                "name": "ec2-2",
+                "status": 16
+            },
+            "elb": {
+                "name": "elb-2",
+                "status": true
+            }
+        },
+        {
+            "ebs": {
+                "id": "vol-01234567",
+                "name": "ebs-3",
+                "status": "in-use"
+            },
+            "ec2": {
+                "id": "i-01234567",
+                "name": "ec2-3",
+                "status": 16
+            }
+        }
+    ]
+}
