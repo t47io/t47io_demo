@@ -1,0 +1,178 @@
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+
+from src.console import *
+from src.dash import *
+from src.env import error400, error401, error403, error404, error500, error503
+from src.models import *
+from src.settings import *
+from src.user import user_contact, user_sunetid
+
+
+@login_required
+def group_index(request):
+    return render(request, PATH.HTML_PATH['group_index'])
+
+@login_required
+def group_pages(request, path):
+    path = path.strip('/')
+    for key in PATH.GROUP_PATH:
+        if path in PATH.GROUP_PATH[key]:
+            break
+    page = '%s_%s' % (key, path) if key != path else path
+    json = {}
+
+    if path == 'flash_slide':
+        flash_list = FlashSlide.objects.order_by('-date')
+        for i, gp in enumerate(flash_list):
+            if i == 0 or flash_list[i - 1].date.year != gp.date.year:
+                gp.year_start = True
+            if i == len(flash_list) - 1 or flash_list[i + 1].date.year != gp.date.year:
+                gp.year_end = True
+            if i == 0 or flash_list[i - 1].date.month != gp.date.month:
+                gp.month_start = True
+                gp.label = PATH.COLOR[gp.date.month - 1]
+            if i == len(flash_list) - 1 or flash_list[i + 1].date.month != gp.date.month:
+                gp.month_end = True
+        json = {'flash_list': flash_list}
+
+    elif path == 'journal_club':
+        jc_list = JournalClub.objects.order_by('-date')
+        for i, gp in enumerate(jc_list):
+            gp.label = PATH.COLOR[11 - i % 12]
+            if i == 0 or jc_list[i - 1].date.year != gp.date.year:
+                gp.year_start = True
+        json = {'jc_list': jc_list}
+
+    elif path == 'khala_youtube':
+        khala_list = KhalaYoutube.objects.order_by('-date')
+        for i, gp in enumerate(khala_list):
+            gp.label = PATH.COLOR[11 - i % 12]
+            if i == 0 or khala_list[i - 1].date.year != gp.date.year:
+                gp.year_start = True
+        json = {'khala_list': khala_list}
+
+    elif path == 'rotation':
+        rot_list = RotationStudent.objects.order_by('-date')
+        for i, rot in enumerate(rot_list):
+            rot.label = PATH.COLOR[11 - i % 12]
+            if i == 0 or rot_list[i - 1].date.year != rot.date.year:
+                rot.year_start = True
+            if rot.ppt:
+                rot.ppt_link = os.path.basename(rot.ppt.name)
+            if rot.data:
+                rot.dat_link = os.path.basename(rot.data.name)
+        json = {'rot_list': rot_list}
+
+    elif path == 'archive':
+        arv_list = Presentation.objects.order_by('-date')
+        for i, arv in enumerate(arv_list):
+            arv.label = PATH.COLOR[11 - i % 12]
+            if i == 0 or arv_list[i - 1].date.year != arv.date.year:
+                arv.year_start = True
+            if arv.ppt:
+                arv.ppt_link = os.path.basename(arv.ppt.name).replace('C:\\fakepath\\', '')
+        json = {'arv_list': arv_list}
+
+    elif path == 'contact':
+        if request.method == 'POST': return user_contact(request)
+
+        member = Member.objects.filter(is_alumni=0).order_by('last_name', 'first_name')
+        for i, ppl in enumerate(member):
+            ppl.label = PATH.COLOR[11 - i % 12]
+            ppl.name = ppl.full_name()
+            ppl.photo = ppl.image_tag()
+            ppl.title = ppl.affiliation()
+            ppl.status = ppl.year()
+            ppl.type = GROUP.find_type(ppl.sunet_id)
+            if ppl.phone:
+                ppl.phone = str(ppl.phone)
+                ppl.phone = '(%s) %s-%s' % (ppl.phone[:3], ppl.phone[3:6], ppl.phone[6:])
+        almuni = Member.objects.filter(is_alumni=1).order_by('-finish_year', '-start_year')
+        for i, ppl in enumerate(almuni):
+            ppl.label = PATH.COLOR[11 - i % 12]
+            if i == 0 or almuni[i - 1].finish_year != ppl.finish_year:
+                ppl.year_start = True
+            ppl.name = ppl.full_name()
+            ppl.photo = ppl.image_tag()
+            ppl.title = ppl.affiliation()
+            ppl.status = ppl.year()
+            if ppl.phone:
+                ppl.phone = str(ppl.phone)
+                ppl.phone = '(%s) %s-%s' % (ppl.phone[:3], ppl.phone[3:6], ppl.phone[6:])
+        json = {'current_member': member, 'past_member': almuni, 'contact_form':  ContactForm(), 'sunet_id': user_sunetid(request)}
+
+    return render(request, PATH.HTML_PATH['group_pages'].replace('xxx', page), json)
+
+
+def group_dash(request, keyword):
+    keyword = keyword.strip('/')
+    if keyword == 'aws':
+        json = dash_aws(request)
+    elif keyword == 'ga':
+        json = dash_ga(request)
+    elif keyword == 'git':
+        json = dash_git(request)
+    elif keyword == 'slack':
+        json = dash_slack(request)
+    elif keyword == 'dropbox':
+        json = dash_dropbox(request)
+    elif keyword == 'gcal':
+        json = dash_cal()
+
+    elif keyword == 'schedule':
+        json = dash_schedule(request)
+        flash_slide = FlashSlide.objects.order_by('-date')[0]
+        flash_slide = {'url': flash_slide.link, 'date': flash_slide.date.strftime('%Y-%m-%d')}
+        journal_club = JournalClub.objects.order_by('-date')[0]
+        journal_club = {'url': journal_club.link, 'date': journal_club.date.strftime('%Y-%m-%d'), 'name': journal_club.presenter, 'title': journal_club.title}
+        khala = KhalaYoutube.objects.order_by('-date')[0]
+        khala = {'url': khala.link, 'date': khala.date.strftime('%Y-%m-%d'), 'name': khala.presenter, 'title': khala.title}
+        rotation = RotationStudent.objects.order_by('-date')[0]
+        rotation = {'date': rotation.date.strftime('%Y-%m-%d'), 'name': rotation.full_name, 'title': rotation.title, 'url': os.path.basename(rotation.ppt.name)}
+        archive = Presentation.objects.order_by('-date')[0]
+        if archive.ppt:
+            ar_link = os.path.basename(archive.ppt.name)
+        else:
+            ar_link = archive.link
+        archive = {'date': archive.date.strftime('%Y-%m-%d'), 'name': archive.presenter, 'title': archive.title, 'url': ar_link}
+        json.update({'flash_slide': flash_slide, 'journal_club': journal_club, 'khala': khala, 'rotation': rotation, 'archive': archive})
+        json = simplejson.dumps(json, sort_keys=True, indent=' ' * 4)
+
+    elif keyword == 'user':
+        try:
+            sunet_id = user_sunetid(request)
+            user_type = GROUP.find_type(sunet_id)
+            user = Member.objects.get(sunet_id=sunet_id)
+            if user.phone:
+                user.phone = str(user.phone)
+                user.phone = '(%s) %s-%s' % (user.phone[:3], user.phone[3:6], user.phone[6:])
+            user.type = user_type
+
+            json = {'id': user.sunet_id, 'type': user.type, 'title': user.affiliation(), 'name': user.full_name(), 'photo': user.image_tag(), 'email': user.email, 'phone': user.phone, 'bday': user.bday, 'cap': user.more_info, 'status': user.year()}
+        except Exception:
+            json = {'type': 'unknown'} if sunet_id is None else {'id': sunet_id, 'type': user_type}
+        json = simplejson.dumps(json, sort_keys=True, indent=' ' * 4)
+
+    if isinstance(json, HttpResponse): return json
+    return HttpResponse(json, content_type='application/json')
+
+
+def ping_test(request):
+    return HttpResponse(content="", status=200)
+
+
+def get_staff(request):
+    user = user_sunetid(request)
+    user = 'unknown' if user is None else user
+    return HttpResponse(simplejson.dumps({'user': user, 'admin': EMAIL_NOTIFY}, sort_keys=True, indent=' ' * 4), content_type='application/json')
+
+
+def test(request):
+    # raise ValueError
+    # return error400(request)
+    # send_notify_emails('test', 'test')
+    # send_mail('text', 'test', EMAIL_HOST_USER, [EMAIL_NOTIFY])
+    return HttpResponse(content="", status=200)
+
