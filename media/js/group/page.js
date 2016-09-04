@@ -1,4 +1,4 @@
-if ((app.key == "meeting" && (app.page == "journal_club" || app.page == "khala_youtube" || app.page == "rotation")) || (app.key == "res" && app.page == "archive")) {
+if ((app.key == "meeting" && (app.page == "journal_club" || app.page == "khala_youtube" || app.page == "rotation")) || (app.key == "res" && (app.page == "archive" || app.page == "defense"))) {
     var toggle_flag = false;
     $("#btn_toggle").on("click", function() {
         if (toggle_flag) {
@@ -49,6 +49,13 @@ if ((app.key == "meeting" && (app.page == "journal_club" || app.page == "khala_y
         e.preventDefault();
         $("#sys-head").html("YouTube Video");
         $("#sys-msg").html("This will redirect you to the YouTube Video link (not included for this demo).");
+        $("#sys-modal").modal("show");
+        setTimeout(function() { $("#sys-modal").modal("hide"); }, 1000);
+    });
+    $(".def_link").on("click", function(e) {
+        e.preventDefault();
+        $("#sys-head").html("Poster Image");
+        $("#sys-msg").html("This will redirect you to download Poster Image (not included for this demo).");
         $("#sys-modal").modal("show");
         setTimeout(function() { $("#sys-modal").modal("hide"); }, 1000);
     });

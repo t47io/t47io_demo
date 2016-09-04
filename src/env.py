@@ -77,6 +77,7 @@ class SYS_PATH(Singleton):
             'ROT_PPT_DIR': MEDIA_ROOT + '/data/rot_ppt/',
             'ROT_DAT_DIR': MEDIA_ROOT + '/data/rot_data/',
             'SPE_PPT_DIR': MEDIA_ROOT + '/data/spe_ppt/',
+            'DEF_IMG_DIR': MEDIA_ROOT + '/data/def_img/',
 
             'TMPDIR': MEDIA_ROOT + '/temp/',
         }
@@ -84,7 +85,7 @@ class SYS_PATH(Singleton):
         self.GROUP_PATH = {
             'meeting': ['schedule', 'flash_slide', 'journal_club', 'khala_youtube', 'rotation'],
             'calendar': ['calendar'],
-            'resource': ['gdocs', 'archive', 'archive/upload', 'contact'],
+            'resource': ['gdocs', 'archive', 'archive/upload', 'defense', 'contact'],
             'server': ['aws', 'ga'],
             'service': ['bot', 'git', 'slack', 'dropbox'],
             'misc': ['misc', 'error']

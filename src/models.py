@@ -11,32 +11,64 @@ import os
 def get_member_image(instance, filename):
     name = instance.first_name.strip() + instance.last_name[0].strip()
     ext = filename[filename.rfind('.'):]
-    return PATH.DATA_DIR['MEMBER_IMG_DIR'] + '%s%s' % (name, ext)
+    filename = PATH.DATA_DIR['MEMBER_IMG_DIR'] + '%s%s' % (name, ext)
+    if os.path.exists(filename):
+        os.remove(filename)
+    return filename
 
 def get_pub_pdf(instance, filename):
-    return PATH.DATA_DIR['PUB_PDF_DIR'] + '%s' % filename
+    filename = PATH.DATA_DIR['PUB_PDF_DIR'] + '%s' % filename
+    if os.path.exists(filename):
+        os.remove(filename)
+    return filename
 
 def get_pub_image(instance, filename):
-    return PATH.DATA_DIR['PUB_IMG_DIR'] + '%s' % filename
+    filename = PATH.DATA_DIR['PUB_IMG_DIR'] + '%s' % filename
+    if os.path.exists(filename):
+        os.remove(filename)
+    return filename
 
 def get_pub_data(instance, filename):
-    return PATH.DATA_DIR['PUB_DAT_DIR'] + '%s' % filename
+    filename = PATH.DATA_DIR['PUB_DAT_DIR'] + '%s' % filename
+    if os.path.exists(filename):
+        os.remove(filename)
+    return filename
 
 def get_news_image(instance, filename):
-    return PATH.DATA_DIR['NEWS_IMG_DIR'] + '%s' % filename
+    filename = PATH.DATA_DIR['NEWS_IMG_DIR'] + '%s' % filename
+    if os.path.exists(filename):
+        os.remove(filename)
+    return filename
 
 def get_rot_ppt(instance, filename):
     name = instance.date.strftime('%Y%m%d') + '_' + instance.full_name.replace(' ', '')
     ext = filename[filename.rfind('.'):]
-    return PATH.DATA_DIR['ROT_PPT_DIR'] + '%s%s' % (name, ext)
+    filename = PATH.DATA_DIR['ROT_PPT_DIR'] + '%s%s' % (name, ext)
+    if os.path.exists(filename):
+        os.remove(filename)
+    return filename
 
 def get_rot_data(instance, filename):
     name = instance.date.strftime('%Y%m%d') + '_' + instance.full_name.replace(' ', '')
     ext = filename[filename.rfind('.'):]
-    return PATH.DATA_DIR['ROT_DAT_DIR'] + '%s%s' % (name, ext)
+    filename = PATH.DATA_DIR['ROT_DAT_DIR'] + '%s%s' % (name, ext)
+    if os.path.exists(filename):
+        os.remove(filename)
+    return filename
 
 def get_spe_ppt(instance, filename):
-    return PATH.DATA_DIR['SPE_PPT_DIR'] + '%s' % filename
+    filename = PATH.DATA_DIR['SPE_PPT_DIR'] + '%s' % filename
+    if os.path.exists(filename):
+        os.remove(filename)
+    return filename
+
+def get_def_image(instance, filename):
+    name = instance.date.strftime('%Y%m%d') + '_' + instance.presenter.replace(' ', '')
+    ext = filename[filename.rfind('.'):]
+    filename = PATH.DATA_DIR['DEF_IMG_DIR'] + '%s%s' % (name, ext)
+    if os.path.exists(filename):
+        os.remove(filename)
+    return filename
 
 
 class News(models.Model):
@@ -174,7 +206,7 @@ class JournalClub(models.Model):
 
 class RotationStudent(models.Model):
     date = models.DateField(verbose_name='Presentation Date')
-    full_name = models.CharField(max_length=255, verbose_name='Full Name')
+    full_name = models.CharField(max_length=255, verbose_name='Student')
     title = models.CharField(max_length=255, verbose_name='Presentation Title', help_text='<span class="glyphicon glyphicon-bullhorn"></span>&nbsp; Do <span class="label label-danger">NOT</span> use "CamelCase / InterCaps / CapWords". Only capitalize the first word.')
     ppt = models.FileField(upload_to=get_rot_ppt, blank=True, max_length=255, verbose_name='Slides Upload', help_text='<span class="glyphicon glyphicon-film"></span>&nbsp; Link to slides on server. Use file name format <span class="label label-inverse">DATE_FULLNAME.pptx</span>: date in 8-digits(yyyymmdd), full name (no space). <span class="label label-success">Example</span>: 20120321_SiqiTian.pptx.')
     data = models.FileField(upload_to=get_rot_data, blank=True, max_length=255, verbose_name='Extra Data', help_text='<span class="glyphicon glyphicon-hdd"></span>&nbsp; Link to extra data file.')
@@ -205,6 +237,23 @@ class Presentation(models.Model):
     class Meta():
         verbose_name = 'Archived Presentation'
         verbose_name_plural = 'Archived Presentations'
+
+
+class DefensePoster(models.Model):
+    date = models.DateField(verbose_name='Defense Date')
+    presenter = models.CharField(max_length=255, verbose_name='Student')
+    title = models.CharField(max_length=255, verbose_name='Presentation Title', help_text='<span class="glyphicon glyphicon-bullhorn"></span>&nbsp; Do <span class="label label-danger">NOT</span> use "CamelCase / InterCaps / CapWords". Only capitalize the first word.')
+    image = models.ImageField(upload_to=get_def_image, max_length=255, verbose_name='Poster Image', help_text='<span class="glyphicon glyphicon-film"></span>&nbsp; Link to poster on server. <span class="label label-danger">NO</span> spaces in file name.')
+
+    class Meta():
+        verbose_name = 'Defense Poster'
+        verbose_name_plural = 'Defense Posters'
+
+    def image_tag(self):
+        if self.image:
+            return u'<img class="thumbnail" src="/site_data/def_img/%s" width=120/>' % os.path.basename(self.image.url)
+    image_tag.short_description = 'Preview'
+    image_tag.allow_tags = True
 
 
 class SlackMessage(models.Model):
