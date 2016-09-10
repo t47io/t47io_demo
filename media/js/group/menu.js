@@ -40,19 +40,19 @@ app.fnChangeBreadcrumb = function() {
         $('<li><span style="color: #000;" class="glyphicon glyphicon-bell"></span>&nbsp;&nbsp;<a href="">Group Meeting</a></li>').insertAfter($("ul.breadcrumb > li:first"));
 
         if (app.page == "schedule") {
-            $("ul.breadcrumb").append('<li class="active"><span style="color: #000;" class="glyphicon glyphicon-time"></span>&nbsp;&nbsp;<a href="https://docs.google.com/spreadsheets/d/1TAz5NFb3_9Zx0L9qJZzCC_mbZhv3C-uW3GC5i8bhYYc/edit#gid=1" target="_blank">Google Spreadsheet&nbsp;&nbsp;<span class="glyphicon glyphicon-new-window" style="font-size:14px;"></span></a></li>');
+            $("ul.breadcrumb").append('<li class="active"><span style="color: #000;" class="glyphicon glyphicon-time"></span>&nbsp;&nbsp;<a href="https://docs.google.com/spreadsheets/d/1TAz5NFb3_9Zx0L9qJZzCC_mbZhv3C-uW3GC5i8bhYYc/edit#gid=1" target="_blank" rel="noopener noreferrer external">Google Spreadsheet&nbsp;&nbsp;<span class="glyphicon glyphicon-new-window" style="font-size:14px;"></span></a></li>');
         } else if (app.page == "flash_slide") {
             $("ul.breadcrumb").append('<li class="active"><span style="color: #000;" class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;Flash Slides</li>');
         } else if (app.page == "journal_club") {
             $("ul.breadcrumb").append('<li class="active"><span style="color: #000;" class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Journal Club Presentations</li>');
         } else if (app.page == "khala_youtube") {
-            $("ul.breadcrumb").append('<li class="active"><span style="color: #000;" class="glyphicon glyphicon-facetime-video"></span>&nbsp;&nbsp;<a href="https://www.youtube.com/" target="_blank">Khala Special <span class="label" style="color:#000;">You</span><span class="label label-danger">Tube</span> Channel&nbsp;&nbsp;<span class="glyphicon glyphicon-new-window" style="font-size:14px;"></span></a></li>');
+            $("ul.breadcrumb").append('<li class="active"><span style="color: #000;" class="glyphicon glyphicon-facetime-video"></span>&nbsp;&nbsp;<a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer external">Khala Special <span class="label" style="color:#000;">You</span><span class="label label-danger">Tube</span> Channel&nbsp;&nbsp;<span class="glyphicon glyphicon-new-window" style="font-size:14px;"></span></a></li>');
         } else if (app.page == "rotation") {
             $("ul.breadcrumb").append('<li class="active"><span style="color: #000;" class="glyphicon glyphicon-retweet"></span>&nbsp;&nbsp;Rotation Student Presentations</li>');
         }
     } else if (app.key == "calendar") {
         $("ul.breadcrumb").css("border-bottom", "5px solid #c28fdd");
-        $("ul.breadcrumb").append('<li class="active"><span style="color: #000;" class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;<a href="https://www.google.com/calendar/" target="_blank">Google Calendar&nbsp;&nbsp;<span class="glyphicon glyphicon-new-window" style="font-size:14px;"></span></a></li>');
+        $("ul.breadcrumb").append('<li class="active"><span style="color: #000;" class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;<a href="https://www.google.com/calendar/" target="_blank" rel="noopener noreferrer external">Google Calendar&nbsp;&nbsp;<span class="glyphicon glyphicon-new-window" style="font-size:14px;"></span></a></li>');
     } else if (app.key == "res") {
         $("ul.breadcrumb").css("border-bottom", "5px solid #eeb211");
         $('<li><span style="color: #000;" class="glyphicon glyphicon-briefcase"></span>&nbsp;&nbsp;<a href="">Resources</a></li>').insertAfter($("ul.breadcrumb > li:first"));
@@ -83,11 +83,11 @@ app.fnChangeBreadcrumb = function() {
         if (app.page == "bot") {
             $("ul.breadcrumb").append('<li class="active"><div class="sprite i_21"><i class="i_bot"></i></div>&nbsp;&nbsp;Demo Bot</li>');
         } else if (app.page == "git") {
-            $("ul.breadcrumb").append('<li class="active"><div class="sprite i_21"><i class="i_git"></i></div>&nbsp;&nbsp;<a href="https://www.github.com/DasLab/" target="_blank">GitHub Repositories&nbsp;&nbsp;<span class="glyphicon glyphicon-new-window" style="font-size:14px;"></span></a></li>');
+            $("ul.breadcrumb").append('<li class="active"><div class="sprite i_21"><i class="i_git"></i></div>&nbsp;&nbsp;<a href="https://www.github.com/t47io/" target="_blank" rel="noopener noreferrer external">GitHub Repositories&nbsp;&nbsp;<span class="glyphicon glyphicon-new-window" style="font-size:14px;"></span></a></li>');
         } else if (app.page == "slack") {
-            $("ul.breadcrumb").append('<li class="active"><div class="sprite i_21"><i class="i_slack"></i></div>&nbsp;&nbsp;<a href="https://das-lab.slack.com/" target="_blank">Slack&nbsp;&nbsp;<span class="glyphicon glyphicon-new-window" style="font-size:14px;"></span></a></li>');
+            $("ul.breadcrumb").append('<li class="active"><div class="sprite i_21"><i class="i_slack"></i></div>&nbsp;&nbsp;<a href="https://sad-lab.slack.com/" target="_blank" rel="noopener noreferrer external">Slack&nbsp;&nbsp;<span class="glyphicon glyphicon-new-window" style="font-size:14px;"></span></a></li>');
         } else if (app.page == "dropbox") {
-            $("ul.breadcrumb").append('<li class="active"><div class="sprite i_21"><i class="i_dropbox"></i></div>&nbsp;&nbsp;<a href="https://www.dropbox.com/" target="_blank">Dropbox&nbsp;&nbsp;<span class="glyphicon glyphicon-new-window" style="font-size:14px;"></span></a></li>');
+            $("ul.breadcrumb").append('<li class="active"><div class="sprite i_21"><i class="i_dropbox"></i></div>&nbsp;&nbsp;<a href="https://www.dropbox.com/" target="_blank" rel="noopener noreferrer external">Dropbox&nbsp;&nbsp;<span class="glyphicon glyphicon-new-window" style="font-size:14px;"></span></a></li>');
         }
     } else if (app.key == "misc") {
         $("ul.breadcrumb").css("border-bottom", "5px solid #5496d7");

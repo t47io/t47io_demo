@@ -17,14 +17,14 @@
 							<span id="card_user_aff">Demo Visitor</span>
 							<br/>
 							<span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>&nbsp;&nbsp;<span id="card_user_stat">Guest</span>
-							<span class="pull-right"><a target="_blank" id="card_user_cap" class="cap_link"><span class="label label-warning">CAP Profile</span></a></span>
+							<span class="pull-right"><a target="_blank" rel="noopener noreferrer external" id="card_user_cap" class="cap_link"><span class="label label-warning">CAP Profile</span></a></span>
 						</p>
 						<p style="line-height:25px; margin-top:30px;">
 							<span class="glyphicon glyphicon-phone" aria-hidden="true"></span>&nbsp;&nbsp;
 							Phone:&nbsp;&nbsp;<span id="card_user_phone">(000)-000-0000</span>
 							<br/>
 							<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;
-							Email:&nbsp;&nbsp;<a target="_blank" style="text-decoration:underline;" href="mailto:demo@t47.io" class="mail_link" id="card_user_email">demo@t47.io</a>
+							Email:&nbsp;&nbsp;<a target="_blank" rel="noopener noreferrer external" style="text-decoration:underline;" href="mailto:demo@t47.io" class="mail_link" id="card_user_email">demo@t47.io</a>
 
 						</p>
 					</div>
@@ -125,18 +125,18 @@
 									{% if ppl.joint_lab %}
 										<br/>
 										<span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>&nbsp;&nbsp;
-										Joint with <a href="{{ ppl.joint_link }}" target="_blank">{{ ppl.joint_lab }} lab</a>
+										Joint with <a href="{{ ppl.joint_link }}" target="_blank" rel="noopener noreferrer external">{{ ppl.joint_lab }} lab</a>
 									{% endif %}
 									<br/>
 									<span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>&nbsp;&nbsp;<span>{{ ppl.status }}</span>
-									<span class="pull-right"><a href="{{ ppl.more_info }}" target="_blank"  class="cap_link"><span class="label label-warning">CAP Profile</span></a></span>
+									<span class="pull-right"><a href="{{ ppl.more_info }}" target="_blank" rel="noopener noreferrer external"  class="cap_link"><span class="label label-warning">CAP Profile</span></a></span>
 								</p>
 								<p style="line-height:25px; margin-top:30px;">
 									<span class="glyphicon glyphicon-phone" aria-hidden="true"></span>&nbsp;&nbsp;
 									Phone:&nbsp;&nbsp;{{ ppl.phone }}
 									<br/>
 									<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;
-									Email:&nbsp;&nbsp;<a href="mailto:{{ ppl.email }}" target="_blank" class="mail_link" style="text-decoration:underline;">{{ ppl.email }}</a>
+									Email:&nbsp;&nbsp;<a href="mailto:{{ ppl.email }}" target="_blank" rel="noopener noreferrer external" class="mail_link" style="text-decoration:underline;">{{ ppl.email }}</a>
 
 								</p>
 							</div>
@@ -182,12 +182,12 @@
 											{% if ppl.joint_lab %}
 												<br/>
 												<span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>&nbsp;&nbsp;
-												Joint with <a href="{{ ppl.joint_link }}" target="_blank">{{ ppl.joint_lab }} lab</a>
+												Joint with <a href="{{ ppl.joint_link }}" target="_blank" rel="noopener noreferrer external">{{ ppl.joint_lab }} lab</a>
 											{% endif %}
 											<br/>
 											<span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>&nbsp;&nbsp;<span>{{ ppl.status }}</span>
 											{% if ppl.more_info %}
-												<span class="pull-right"><a href="{{ ppl.more_info }}" target="_blank" class="cap_link"><span class="label label-warning">CAP Profile</span></a></span>
+												<span class="pull-right"><a href="{{ ppl.more_info }}" target="_blank" rel="noopener noreferrer external" class="cap_link"><span class="label label-warning">CAP Profile</span></a></span>
 											{% endif %}
 										</p>
 										<p style="line-height:25px; margin-top:30px;">
@@ -195,7 +195,7 @@
 											Phone:&nbsp;&nbsp;{{ ppl.phone }}
 											<br/>
 											<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;
-											Email:&nbsp;&nbsp;<a href="mailto:{{ ppl.email }}" target="_blank" class="mail_link" style="text-decoration:underline;">{{ ppl.email }}</a>
+											Email:&nbsp;&nbsp;<a href="mailto:{{ ppl.email }}" target="_blank" rel="noopener noreferrer external" class="mail_link" style="text-decoration:underline;">{{ ppl.email }}</a>
 
 										</p>
 									</div>
@@ -230,7 +230,7 @@
 						<td>{{ppl.status}}</td>
 						<td><kbd {% if ppl.type == 'admin' %}style="color:#ff69bc;"{% endif %}>{{ppl.sunet_id}}</kbd></td>
 						<td>{{ppl.phone}}</td>
-						<td><i><a href="mailto:{{ ppl.email }}" target="_blank" class="mail_link" style="text-decoration:underline;">{{ ppl.email }}</a></td>
+						<td><i><a href="mailto:{{ ppl.email }}" target="_blank" rel="noopener noreferrer external" class="mail_link" style="text-decoration:underline;">{{ ppl.email }}</a></td>
 						<td>{{ppl.title}}{% if ppl.description %}, {{ ppl.description }}{% endif %}</td>
 					</tr>
 				{% endfor %}
@@ -241,7 +241,7 @@
 						<td>{{ppl.status}}</td>
 						<td><kbd>{{ppl.sunet_id}}</kbd></td>
 						<td>{{ppl.phone}}</td>
-						<td><i><a href="mailto:{{ ppl.email }}" target="_blank" class="mail_link" style="text-decoration:underline;">{{ ppl.email }}</a></i></td>
+						<td><i><a href="mailto:{{ ppl.email }}" target="_blank" rel="noopener noreferrer external" class="mail_link" style="text-decoration:underline;">{{ ppl.email }}</a></i></td>
 						<td>{{ppl.title}}{% if ppl.description %}, {{ ppl.description }}{% endif %}</td>
 					</tr>
 				{% endfor %}
