@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 
 from src.console import *
 from src.dash import *
+from src.env import error403
 from src.models import *
 from src.settings import *
 
@@ -170,7 +171,12 @@ def export(request):
 
 
 def get_stat(request, keyword):
-    json = simplejson.load(open('%s/cache/stat_%s.json' % (MEDIA_ROOT, keyword.strip('/')), 'r'))
+    if keyword == "pem":
+        return error403(request)
+    elif keyword == "key":
+        json = {'mysql': {'user': 'mysql', 'password': 'mysql_password'}, 'apache': {'user': 'apache', 'password': 'apache_password'}, 'django': {'user': 'django', 'password': 'django_password'}, 'gmail': {'user': 'user@gmail.com', 'password': 'gmail_password'}, 'vendor': {'user': 'user@gmail.com', 'password': 'vendor_password'}}
+    else:
+        json = simplejson.load(open('%s/cache/stat_%s.json' % (MEDIA_ROOT, keyword.strip('/')), 'r'))
     return HttpResponse(simplejson.dumps(json, sort_keys=True, indent=' ' * 4), content_type='application/json')
 
 def get_dash(request, keyword):
@@ -195,6 +201,9 @@ def man(request):
 def ref(request):
     return render(request, PATH.HTML_PATH['admin_ref'], {})
 
+def key(request):
+    return render(request, PATH.HTML_PATH['admin_secret'], {})
+
 
 admin.site.register_view('backup/', view=backup, visible=False)
 admin.site.register_view('backup/form/', view=backup_form, visible=False)
@@ -210,6 +219,7 @@ admin.site.register_view('export/', view=export, visible=False)
 
 admin.site.register_view('man/', view=man, visible=False)
 admin.site.register_view('ref/', view=ref, visible=False)
+admin.site.register_view('key/', view=key, visible=False)
 
 admin.site.register_view(r'dash/(apache|aws|ga|git|group|dash)/?$', view=get_dash, visible=False)
-admin.site.register_view(r'stat/(ver|sys|backup)/?$', view=get_stat, visible=False)
+admin.site.register_view(r'stat/(ver|sys|backup|pem|key)/?$', view=get_stat, visible=False)
