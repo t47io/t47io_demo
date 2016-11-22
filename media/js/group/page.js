@@ -264,6 +264,14 @@ if ((app.key == "meeting" && (app.page == "journal_club" || app.page == "khala_y
                 }
                 toggle_flag = !toggle_flag;
             });
+
+            $("#btn_pem").on("click", function(e) {
+                e.preventDefault();
+                $("#sys-head").html("Download Certificate");
+                $("#sys-msg").html("The AWS SSH certificate will be provided.");
+                $("#sys-modal").modal("show");
+                setTimeout(function() { $("#sys-modal").modal("hide"); }, 2000);
+            });
         });
     }
 } else if (app.key == "misc") {
