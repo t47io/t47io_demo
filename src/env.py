@@ -87,8 +87,8 @@ class SYS_PATH(Singleton):
             'meeting': ['schedule', 'flash_slide', 'journal_club', 'khala_youtube', 'rotation'],
             'calendar': ['calendar'],
             'resource': ['gdocs', 'archive', 'archive/upload', 'defense', 'contact'],
+            'service': ['bot', 'secret', 'git', 'slack', 'dropbox'],
             'server': ['aws', 'ga'],
-            'service': ['bot', 'git', 'slack', 'dropbox'],
             'misc': ['misc', 'error']
         }
 
