@@ -28,9 +28,23 @@ simplejson >= 3.8.1
 slacker >= 0.9.0
 ```
 
-The `gviz-api.py` is available at https://github.com/google/google-visualization-python/.
+The `gviz-api.py` is available at [`google-visualization-python`](https://github.com/google/google-visualization-python/).
 
-The `django-filemanager` is a modified version of https://github.com/IMGIITRoorkee/django-filemanager/. The source code is available internally. Install with `sudo python setup.py install`.
+The `django-filemanager` is a modified version of [`django-filemanager`](https://github.com/IMGIITRoorkee/django-filemanager/). The source code is available internally at this [fork](https://github.com/t47io/django-filemanager/).
+
+Install with:
+
+```sh
+cd ~
+git clone https://github.com/google/google-visualization-python.git
+cd google-visualization-python
+sudo python setup.py install
+
+cd ..
+git clone https://github.com/t47io/django-filemanager.git
+cd django-filemanager
+sudo python setup.py install
+```
 
 **Lab Demo** also requires proper setup of `mysql.server`, `apache2`, `mod_wsgi`, `pandoc` and `cron` jobs.
 
@@ -46,13 +60,17 @@ cd path/to/server_demo/repo
 python manage.py runserver
 ```
 
+The server should be running at `localhost:8000` with a python session interactive in terminal.
+
 ## Documentation
 
-Documentation is available at admin [manual](https://demo.t47.io/admin/man/) and [reference](https://demo.t47.io/admin/ref/).
+- Documentation is available at admin [manual](https://demo.t47.io/admin/man/) and [reference](https://demo.t47.io/admin/ref/).
+
+- Alternatively, read the repository [**Wiki**](https://github.com/DasLab/Server_Daslab/wiki/).
 
 ## License
 
-**Copyright &copy; 2015-2016: Siqi Tian _[[t47](https://t47.io/)]_, Stanford University. All Rights Reserved.**
+**Copyright &copy; 2015-2017: Siqi Tian _[[t47](https://t47.io/)]_, Stanford University. All Rights Reserved.**
 
 The original **DasLab Server** _Source Code_ is proprietary and confidential. Unauthorized copying of this repository, via any medium, is strictly prohibited.
 
