@@ -30,6 +30,7 @@ sudo chown admin:admin *.py* *.md requirements.txt
 sudo chmod 600 *.py* *.md requirements.txt
 find .git -type f | sudo xargs chmod 640
 find .git -type d | sudo xargs chmod 750
+sudo chown admin:www-data .
 
 sudo chown admin:www-data ../yuicompressor.jar
 sudo chmod 640 ../yuicompressor.jar
